@@ -1,0 +1,482 @@
+[
+  {
+    "id": 1,
+    "destination_japanese": "イスタンブール",
+    "route": "HND-IST",
+    "departure_flight_number": "NH219",
+    "return_route": "IST-HND",
+    "return_flight_number": "NH220",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 2,
+    "destination_japanese": "シドニー",
+    "route": "HND-SYD",
+    "departure_flight_number": "NH889",
+    "return_route": "SYD-HND",
+    "return_flight_number": "NH890",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 3,
+    "destination_japanese": "香港",
+    "route": "HND-HKG",
+    "departure_flight_number": "NH859",
+    "return_route": "HKG-HND",
+    "return_flight_number": "NH860",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 4,
+    "destination_japanese": "ソウル金浦",
+    "route": "HND-GMP",
+    "departure_flight_number": "NH861",
+    "return_route": "GMP-HND",
+    "return_flight_number": "NH862",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 5,
+    "destination_japanese": "北京",
+    "route": "HND-PEK",
+    "departure_flight_number": "NH961",
+    "return_route": "PEK-HND",
+    "return_flight_number": "NH962",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 6,
+    "destination_japanese": "広州",
+    "route": "HND-CAN",
+    "departure_flight_number": "NH923",
+    "return_route": "CAN-HND",
+    "return_flight_number": "NH924",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 7,
+    "destination_japanese": "パリ",
+    "route": "HND-CDG",
+    "departure_flight_number": "NH215",
+    "return_route": "CDG-HND",
+    "return_flight_number": "NH216",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 8,
+    "destination_japanese": "台北松山",
+    "route": "HND-TSA",
+    "departure_flight_number": "NH851",
+    "return_route": "TSA-HND",
+    "return_flight_number": "NH852",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 9,
+    "destination_japanese": "フランクフルト",
+    "route": "HND-FRA",
+    "departure_flight_number": "NH223",
+    "return_route": "FRA-HND",
+    "return_flight_number": "NH224",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 10,
+    "destination_japanese": "マニラ",
+    "route": "HND-MNL",
+    "departure_flight_number": "NH869",
+    "return_route": "MNL-HND",
+    "return_flight_number": "NH870",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 11,
+    "destination_japanese": "青島",
+    "route": "HND-TAO",
+    "departure_flight_number": "NH949",
+    "return_route": "TAO-HND",
+    "return_flight_number": "NH950",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 12,
+    "destination_japanese": "ロンドン",
+    "route": "HND-LHR",
+    "departure_flight_number": "NH211",
+    "return_route": "LHR-HND",
+    "return_flight_number": "NH212",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 13,
+    "destination_japanese": "上海虹橋",
+    "route": "HND-SHA",
+    "departure_flight_number": "NH969",
+    "return_route": "SHA-HND",
+    "return_flight_number": "NH970",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 14,
+    "destination_japanese": "ジャカルタ",
+    "route": "HND-CGK",
+    "departure_flight_number": "NH855",
+    "return_route": "CGK-HND",
+    "return_flight_number": "NH856",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 15,
+    "destination_japanese": "ワシントン",
+    "route": "HND-IAD",
+    "departure_flight_number": "NH102",
+    "return_route": "IAD-HND",
+    "return_flight_number": "NH101",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 16,
+    "destination_japanese": "ヒューストン",
+    "route": "HND-IAH",
+    "departure_flight_number": "NH114",
+    "return_route": "IAH-HND",
+    "return_flight_number": "NH113",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 17,
+    "destination_japanese": "シカゴ",
+    "route": "HND-ORD",
+    "departure_flight_number": "NH112",
+    "return_route": "ORD-HND",
+    "return_flight_number": "NH111",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 18,
+    "destination_japanese": "バンコク",
+    "route": "HND-BKK",
+    "departure_flight_number": "NH847",
+    "return_route": "BKK-HND",
+    "return_flight_number": "NH848",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 19,
+    "destination_japanese": "ニューヨーク",
+    "route": "HND-JFK",
+    "departure_flight_number": "NH110",
+    "return_route": "JFK-HND",
+    "return_flight_number": "NH109",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 20,
+    "destination_japanese": "シンガポール",
+    "route": "HND-SIN",
+    "departure_flight_number": "NH841",
+    "return_route": "SIN-HND",
+    "return_flight_number": "NH842",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 21,
+    "destination_japanese": "デリー",
+    "route": "HND-DEL",
+    "departure_flight_number": "NH837",
+    "return_route": "DEL-HND",
+    "return_flight_number": "NH838",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 22,
+    "destination_japanese": "深圳",
+    "route": "HND-SZX",
+    "departure_flight_number": "NH965",
+    "return_route": "SZX-HND",
+    "return_flight_number": "NH966",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 23,
+    "destination_japanese": "台北松山",
+    "route": "HND-TSA",
+    "departure_flight_number": "NH853",
+    "return_route": "TSA-HND",
+    "return_flight_number": "NH854",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 24,
+    "destination_japanese": "ソウル金浦",
+    "route": "HND-GMP",
+    "departure_flight_number": "NH865",
+    "return_route": "GMP-HND",
+    "return_flight_number": "NH864",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 25,
+    "destination_japanese": "北京",
+    "route": "HND-PEK",
+    "departure_flight_number": "NH963",
+    "return_route": "PEK-HND",
+    "return_flight_number": "NH964",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 26,
+    "destination_japanese": "ホーチミン",
+    "route": "HND-SGN",
+    "departure_flight_number": "NH891",
+    "return_route": "SGN-HND",
+    "return_flight_number": "NH892",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 27,
+    "destination_japanese": "上海浦東",
+    "route": "HND-PVG",
+    "departure_flight_number": "NH971",
+    "return_route": "PVG-HND",
+    "return_flight_number": "NH972",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 28,
+    "destination_japanese": "ソウル金浦",
+    "route": "HND-GMP",
+    "departure_flight_number": "NH867",
+    "return_route": "GMP-HND",
+    "return_flight_number": "NH868",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 29,
+    "destination_japanese": "ロサンゼルス",
+    "route": "HND-LAX",
+    "departure_flight_number": "NH126",
+    "return_route": "LAX-HND",
+    "return_flight_number": "NH125",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 30,
+    "destination_japanese": "シアトル",
+    "route": "HND-SEA",
+    "departure_flight_number": "NH118",
+    "return_route": "SEA-HND",
+    "return_flight_number": "NH117",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 31,
+    "destination_japanese": "フランクフルト",
+    "route": "HND-FRA",
+    "departure_flight_number": "NH203",
+    "return_route": "FRA-HND",
+    "return_flight_number": "NH204",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 32,
+    "destination_japanese": "ホノルル",
+    "route": "HND-HNL",
+    "departure_flight_number": "NH186",
+    "return_route": "HNL-HND",
+    "return_flight_number": "NH185",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 33,
+    "destination_japanese": "バンクーバー",
+    "route": "HND-YVR",
+    "departure_flight_number": "NH116",
+    "return_route": "YVR-HND",
+    "return_flight_number": "NH115",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 34,
+    "destination_japanese": "上海浦東",
+    "route": "HND-PVG",
+    "departure_flight_number": "NH967",
+    "return_route": "PVG-HND",
+    "return_flight_number": "NH968",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 35,
+    "destination_japanese": "シドニー",
+    "route": "HND-SYD",
+    "departure_flight_number": "NH879",
+    "return_route": "SYD-HND",
+    "return_flight_number": "NH880",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 36,
+    "destination_japanese": "ニューヨーク",
+    "route": "HND-JFK",
+    "departure_flight_number": "NH160",
+    "return_route": "JFK-HND",
+    "return_flight_number": "NH159",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 37,
+    "destination_japanese": "ウィーン",
+    "route": "HND-VIE",
+    "departure_flight_number": "NH205",
+    "return_route": "VIE-HND",
+    "return_flight_number": "NH206",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 38,
+    "destination_japanese": "ミュンヘン",
+    "route": "HND-MUC",
+    "departure_flight_number": "NH217",
+    "return_route": "MUC-HND",
+    "return_flight_number": "NH218",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 39,
+    "destination_japanese": "サンフランシスコ",
+    "route": "HND-SFO",
+    "departure_flight_number": "NH108",
+    "return_route": "SFO-HND",
+    "return_flight_number": "NH107",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 40,
+    "destination_japanese": "ジャカルタ",
+    "route": "HND-CGK",
+    "departure_flight_number": "NH871",
+    "return_route": "CGK-HND",
+    "return_flight_number": "NH872",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 41,
+    "destination_japanese": "クアラルンプール",
+    "route": "HND-KUL",
+    "departure_flight_number": "NH885",
+    "return_route": "KUL-HND",
+    "return_flight_number": "NH886",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 42,
+    "destination_japanese": "バンコク",
+    "route": "HND-BKK",
+    "departure_flight_number": "NH849",
+    "return_route": "BKK-HND",
+    "return_flight_number": "NH850",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 43,
+    "destination_japanese": "ストックホルム",
+    "route": "HND-ARN",
+    "departure_flight_number": "NH221",
+    "return_route": "ARN-HND",
+    "return_flight_number": "NH222",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 44,
+    "destination_japanese": "ロサンゼルス",
+    "route": "HND-LAX",
+    "departure_flight_number": "NH106",
+    "return_route": "LAX-HND",
+    "return_flight_number": "NH105",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 45,
+    "destination_japanese": "シンガポール",
+    "route": "HND-SIN",
+    "departure_flight_number": "NH843",
+    "return_route": "SIN-HND",
+    "return_flight_number": "NH844",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 46,
+    "destination_japanese": "ミラノ",
+    "route": "HND-MXP",
+    "departure_flight_number": "NH207",
+    "return_route": "MXP-HND",
+    "return_flight_number": "NH208",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 47,
+    "destination_japanese": "バンコク",
+    "route": "HND-BKK",
+    "departure_flight_number": "NH877",
+    "return_route": "BKK-HND",
+    "return_flight_number": "NH878",
+    "category": "international",
+    "source": "HND_2026_04"
+  },
+  {
+    "id": 48,
+    "destination_japanese": "香港",
+    "route": "HND-HKG",
+    "departure_flight_number": "NH813",
+    "return_route": "HKG-HND",
+    "return_flight_number": "NH814",
+    "category": "international",
+    "source": "HND_2026_04"
+  }
+]
