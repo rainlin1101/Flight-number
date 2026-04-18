@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: 'quiz/:mode', element: <QuizPage /> },
+      { path: 'quiz', element: <QuizPage /> },
       { path: 'result', element: <ResultPage /> },
       { path: 'wrong-book', element: <WrongBookPage /> },
       { path: 'guide', element: <PatternGuidePage /> },

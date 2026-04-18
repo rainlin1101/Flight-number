@@ -1,5 +1,3 @@
-export type QuizMode = 'departure' | 'return';
-
 export interface FlightEntry {
   id: number;
   destination_japanese: string;
@@ -17,15 +15,14 @@ export interface QuizQuestion {
 }
 
 export interface WrongBookItem {
-  mode: QuizMode;
   destination: string;
-  expected: string[];
+  expectedDeparture: string[];
+  expectedReturn: string[];
   entries: FlightEntry[];
   timestamp: string;
 }
 
 export interface ScoreSummary {
-  mode: QuizMode;
   total: number;
   correct: number;
   wrong: number;

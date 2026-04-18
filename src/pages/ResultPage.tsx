@@ -1,11 +1,10 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AppButton } from '../components/AppButton';
 import { Card } from '../components/Card';
-import type { QuizMode, ScoreSummary } from '../types';
+import type { ScoreSummary } from '../types';
 
 interface ResultState {
   summary: ScoreSummary;
-  mode: QuizMode;
 }
 
 export function ResultPage() {
@@ -26,7 +25,7 @@ export function ResultPage() {
     );
   }
 
-  const { summary, mode } = state;
+  const { summary } = state;
 
   return (
     <div className="space-y-4">
@@ -42,7 +41,7 @@ export function ResultPage() {
 
       <Card>
         <div className="space-y-2">
-          <AppButton onClick={() => navigate(`/quiz/${mode}`)}>Retry</AppButton>
+          <AppButton onClick={() => navigate('/quiz')}>Retry</AppButton>
           <Link to="/wrong-book">
             <AppButton tone="neutral">Review Wrong Book</AppButton>
           </Link>

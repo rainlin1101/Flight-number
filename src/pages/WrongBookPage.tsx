@@ -33,7 +33,7 @@ export function WrongBookPage() {
   }
 
   function removeItem(target: WrongBookItem) {
-    const next = items.filter((item) => !(item.mode === target.mode && item.destination === target.destination));
+    const next = items.filter((item) => item.destination !== target.destination);
     sync(next);
   }
 
@@ -42,8 +42,8 @@ export function WrongBookPage() {
   }
 
   function practiceWrong(item: WrongBookItem) {
-    localStorage.setItem(STORAGE_KEYS.recentMode, item.mode);
-    navigate(`/quiz/${item.mode}`, {
+    localStorage.setItem(STORAGE_KEYS.recentMode, 'both');
+    navigate('/quiz', {
       state: {
         customQuestions: [{ destination: item.destination, entries: item.entries }],
       },
@@ -52,11 +52,9 @@ export function WrongBookPage() {
 
   function practiceAllWrong() {
     if (sorted.length === 0) return;
-    const mode = sorted[0].mode;
-    const filtered = sorted.filter((item) => item.mode === mode);
-    navigate(`/quiz/${mode}`, {
+    navigate('/quiz', {
       state: {
-        customQuestions: filtered.map((item) => ({
+        customQuestions: sorted.map((item) => ({
           destination: item.destination,
           entries: item.entries,
         })),
@@ -77,10 +75,10 @@ export function WrongBookPage() {
         </Card>
       ) : (
         sorted.map((item) => (
-          <Card key={`${item.mode}-${item.destination}`}>
+          <Card key={item.destination}>
             <p className="text-lg font-semibold">{item.destination}</p>
-            <p className="mt-1 text-xs text-slate-500">Mode: {item.mode === 'departure' ? 'Departure' : 'Return'}</p>
-            <p className="mt-1 text-sm">Answers: {item.expected.join(', ')}</p>
+            <p className="mt-1 text-sm">出発: {item.expectedDeparture.join(', ')}</p>
+            <p className="mt-1 text-sm">到着: {item.expectedReturn.join(', ')}</p>
             <div className="mt-3 flex gap-2">
               <AppButton fullWidth={false} className="flex-1" onClick={() => practiceWrong(item)}>
                 Practice

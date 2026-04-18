@@ -1,4 +1,4 @@
-import type { FlightEntry, QuizMode, QuizQuestion } from './types';
+import type { FlightEntry, QuizQuestion } from './types';
 
 export const STORAGE_KEYS = {
   wrongBook: 'ana_flight_quiz_wrong_book',
@@ -21,10 +21,12 @@ export function normalizeInput(value: string): string {
   return numeric ? `NH${numeric}` : '';
 }
 
-export function getAnswers(entries: FlightEntry[], mode: QuizMode): string[] {
-  return entries.map((entry) =>
-    mode === 'departure' ? entry.departure_flight_number : entry.return_flight_number,
-  );
+export function getDepartureAnswers(entries: FlightEntry[]): string[] {
+  return entries.map((entry) => entry.departure_flight_number);
+}
+
+export function getReturnAnswers(entries: FlightEntry[]): string[] {
+  return entries.map((entry) => entry.return_flight_number);
 }
 
 export function buildQuestions(entries: FlightEntry[]): QuizQuestion[] {
@@ -55,8 +57,4 @@ export function isAnswerSetCorrect(expected: string[], inputs: string[]): boolea
   const inputSorted = [...inputs].sort();
 
   return expectedSorted.every((answer, index) => answer === inputSorted[index]);
-}
-
-export function modeLabel(mode: QuizMode): string {
-  return mode === 'departure' ? 'Departure from HND' : 'Return to HND';
 }
