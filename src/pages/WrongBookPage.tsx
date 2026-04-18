@@ -65,7 +65,7 @@ export function WrongBookPage() {
   return (
     <div className="space-y-4">
       <Card>
-        <h1 className="text-xl font-bold">Wrong Book</h1>
+        <h1 className="text-xl font-black">Wrong Book</h1>
         <p className="mt-1 text-sm text-slate-600">Practice only wrong questions and maintain your list.</p>
       </Card>
 
@@ -75,11 +75,11 @@ export function WrongBookPage() {
         </Card>
       ) : (
         sorted.map((item) => (
-          <Card key={item.destination}>
-            <p className="text-lg font-semibold">{item.destination}</p>
-            <p className="mt-1 text-sm">出発: {item.expectedDeparture.join(', ')}</p>
-            <p className="mt-1 text-sm">到着: {item.expectedReturn.join(', ')}</p>
-            <div className="mt-3 flex gap-2">
+          <Card key={item.destination} className="space-y-2">
+            <p className="text-lg font-black">{item.destination}</p>
+            <p className="text-sm">出発: {item.expectedDeparture.join(', ')}</p>
+            <p className="text-sm">到着: {item.expectedReturn.join(', ')}</p>
+            <div className="mt-2 flex gap-2">
               <AppButton fullWidth={false} className="flex-1" onClick={() => practiceWrong(item)}>
                 Practice
               </AppButton>

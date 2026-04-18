@@ -29,13 +29,13 @@ export function ResultPage() {
 
   return (
     <div className="space-y-4">
-      <Card>
-        <h1 className="text-xl font-bold">Result Summary</h1>
-        <div className="mt-3 space-y-1 text-sm">
+      <Card className="bg-gradient-to-br from-white via-white to-sky-50">
+        <h1 className="text-2xl font-black">Result Summary</h1>
+        <div className="mt-3 space-y-1 text-base">
           <p>Total questions: {summary.total}</p>
           <p>Correct answers: {summary.correct}</p>
           <p>Wrong answers: {summary.wrong}</p>
-          <p>Accuracy: {summary.accuracy}%</p>
+          <p className="font-bold text-sky-700">Accuracy: {summary.accuracy}%</p>
         </div>
       </Card>
 

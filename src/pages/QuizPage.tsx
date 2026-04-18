@@ -51,9 +51,7 @@ export function QuizPage() {
 
   const question = questions[quizState.current];
 
-  const [departureInputs, setDepartureInputs] = useState<string[]>(
-    Array(question?.entries.length ?? 1).fill(''),
-  );
+  const [departureInputs, setDepartureInputs] = useState<string[]>(Array(question?.entries.length ?? 1).fill(''));
   const [returnInputs, setReturnInputs] = useState<string[]>(Array(question?.entries.length ?? 1).fill(''));
   const [submitted, setSubmitted] = useState(false);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
@@ -141,30 +139,40 @@ export function QuizPage() {
 
   return (
     <div className="space-y-4 pb-4">
-      <Card>
-        <div className="space-y-3">
-          <p className="text-xs font-bold uppercase tracking-wide text-slate-500">Flight Number Practice</p>
+      <Card className="bg-gradient-to-br from-white via-white to-lime-50">
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <p className="rounded-full bg-slate-100 px-3 py-1 text-xs font-black uppercase tracking-wide text-slate-600">
+              Flight Number Practice
+            </p>
+            <p className="text-sm font-semibold text-slate-600">全 {questions.length} 問</p>
+          </div>
+
           <div>
-            <p className="text-xs text-slate-500">
+            <p className="text-sm font-semibold text-slate-500">
               Progress {quizState.current + 1} / {questions.length}
             </p>
-            <div className="mt-2 h-3 rounded-full bg-slate-100">
-              <div className="h-3 rounded-full bg-lime-500" style={{ width: `${progress}%` }} />
+            <div className="mt-2 h-3 rounded-full bg-slate-200">
+              <div
+                className="h-3 rounded-full bg-gradient-to-r from-lime-400 to-sky-400 transition-all duration-300"
+                style={{ width: `${progress}%` }}
+              />
             </div>
           </div>
-          <h2 className="text-3xl font-black tracking-tight">羽田 ↔ {question.destination}</h2>
-          <p className="rounded-xl bg-sky-50 px-3 py-2 text-sm text-sky-700">{routeCodes.join(' / ')}</p>
+
+          <h2 className="text-4xl font-black tracking-tight text-slate-900">羽田 ↔ {question.destination}</h2>
+          <p className="rounded-2xl bg-sky-50 px-3 py-2 text-sm font-semibold text-sky-800">{routeCodes.join(' / ')}</p>
         </div>
       </Card>
 
       <Card>
-        <form className="space-y-4" onSubmit={submitAnswer}>
+        <form className="space-y-5" onSubmit={submitAnswer}>
           <div className="space-y-2">
-            <p className="text-sm font-bold text-slate-700">出発</p>
+            <p className="text-sm font-black tracking-wide text-slate-700">出発</p>
             {departureInputs.map((value, index) => (
               <label key={`dep-${question.destination}-${index}`} className="block">
-                <span className="flex items-center rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2 focus-within:border-lime-500">
-                  <span className="mr-2 font-bold text-slate-600">NH</span>
+                <span className="flex items-center rounded-2xl border border-lime-200 bg-lime-50 px-3 py-3 shadow-inner focus-within:border-lime-500">
+                  <span className="mr-2 font-black text-slate-700">NH</span>
                   <input
                     value={value}
                     onChange={(event) =>
@@ -183,7 +191,7 @@ export function QuizPage() {
                         if (form) form.requestSubmit();
                       }
                     }}
-                    className="w-full bg-transparent text-lg outline-none"
+                    className="w-full bg-transparent text-lg font-semibold outline-none"
                     placeholder="219"
                     disabled={submitted}
                   />
@@ -193,11 +201,11 @@ export function QuizPage() {
           </div>
 
           <div className="space-y-2">
-            <p className="text-sm font-bold text-slate-700">到着</p>
+            <p className="text-sm font-black tracking-wide text-slate-700">到着</p>
             {returnInputs.map((value, index) => (
               <label key={`ret-${question.destination}-${index}`} className="block">
-                <span className="flex items-center rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2 focus-within:border-sky-500">
-                  <span className="mr-2 font-bold text-slate-600">NH</span>
+                <span className="flex items-center rounded-2xl border border-sky-200 bg-sky-50 px-3 py-3 shadow-inner focus-within:border-sky-500">
+                  <span className="mr-2 font-black text-slate-700">NH</span>
                   <input
                     value={value}
                     onChange={(event) =>
@@ -216,7 +224,7 @@ export function QuizPage() {
                         if (form) form.requestSubmit();
                       }
                     }}
-                    className="w-full bg-transparent text-lg outline-none"
+                    className="w-full bg-transparent text-lg font-semibold outline-none"
                     placeholder="220"
                     disabled={submitted}
                   />
@@ -236,11 +244,13 @@ export function QuizPage() {
 
         {submitted && (
           <div
-            className={`mt-4 rounded-2xl p-3 text-sm ${
-              isCorrect ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'
+            className={`mt-4 rounded-2xl border p-3 text-sm ${
+              isCorrect
+                ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
+                : 'border-rose-200 bg-rose-50 text-rose-700'
             }`}
           >
-            <p className="font-bold">{isCorrect ? 'Correct' : 'Incorrect'}</p>
+            <p className="text-base font-black">{isCorrect ? 'Correct' : 'Incorrect'}</p>
             <p className="mt-1">出発: {departureAnswers.join(', ')}</p>
             <p className="mt-1">到着: {returnAnswers.join(', ')}</p>
           </div>

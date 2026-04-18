@@ -1,5 +1,15 @@
 import type { PropsWithChildren } from 'react';
 
-export function Card({ children }: PropsWithChildren) {
-  return <section className="rounded-3xl bg-white p-4 shadow-[0_6px_0_0_#e2e8f0] ring-1 ring-slate-100">{children}</section>;
+interface CardProps extends PropsWithChildren {
+  className?: string;
+}
+
+export function Card({ children, className = '' }: CardProps) {
+  return (
+    <section
+      className={`rounded-[28px] border border-white/60 bg-white/95 p-5 shadow-[0_10px_30px_rgba(15,23,42,0.08)] backdrop-blur ${className}`}
+    >
+      {children}
+    </section>
+  );
 }
