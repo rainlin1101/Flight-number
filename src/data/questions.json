@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "destination_japanese": "イスタンブール",
+    "route": "HND-IST",
+    "departure_flight_number": "NH219",
+    "return_route": "IST-HND",
+    "return_flight_number": "NH220",
+    "category": "international",
+    "source": "HND_2026_04"
+  }
+]
