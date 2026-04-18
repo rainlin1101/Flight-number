@@ -23,6 +23,69 @@ interface QuizPageState {
   customQuestions?: QuizQuestion[];
 }
 
+function isFlightEntry(value: unknown): value is FlightEntry {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const row = value as Partial<FlightEntry>;
+  return (
+    typeof row.id === 'number' &&
+    typeof row.destination_japanese === 'string' &&
+    typeof row.route === 'string' &&
+    typeof row.departure_flight_number === 'string' &&
+    typeof row.return_route === 'string' &&
+    typeof row.return_flight_number === 'string' &&
+    typeof row.category === 'string' &&
+    typeof row.source === 'string'
+  );
+}
+
+function toWrongBookItems(raw: string | null): WrongBookItem[] {
+  if (!raw) {
+    return [];
+  }
+
+  try {
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) {
+      return [];
+    }
+
+    return parsed
+      .map((item): WrongBookItem | null => {
+        if (!item || typeof item !== 'object') {
+          return null;
+        }
+
+        const candidate = item as Partial<WrongBookItem>;
+        const entriesSafe = Array.isArray(candidate.entries) ? candidate.entries.filter(isFlightEntry) : [];
+        if (typeof candidate.destination !== 'string' || entriesSafe.length === 0) {
+          return null;
+        }
+
+        const expectedDeparture = Array.isArray(candidate.expectedDeparture)
+          ? candidate.expectedDeparture.filter((v): v is string => typeof v === 'string')
+          : entriesSafe.map((entry) => entry.departure_flight_number);
+
+        const expectedReturn = Array.isArray(candidate.expectedReturn)
+          ? candidate.expectedReturn.filter((v): v is string => typeof v === 'string')
+          : entriesSafe.map((entry) => entry.return_flight_number);
+
+        return {
+          destination: candidate.destination,
+          expectedDeparture,
+          expectedReturn,
+          entries: entriesSafe,
+          timestamp: typeof candidate.timestamp === 'string' ? candidate.timestamp : new Date().toISOString(),
+        };
+      })
+      .filter((item): item is WrongBookItem => item !== null);
+  } catch {
+    return [];
+  }
+}
+
 const typedEntries = entries as FlightEntry[];
 
 export function QuizPage() {
@@ -82,8 +145,7 @@ export function QuizPage() {
     setIsCorrect(correct);
 
     if (!correct) {
-      const wrongBookRaw = localStorage.getItem(STORAGE_KEYS.wrongBook);
-      const existing = wrongBookRaw ? (JSON.parse(wrongBookRaw) as WrongBookItem[]) : [];
+      const existing = toWrongBookItems(localStorage.getItem(STORAGE_KEYS.wrongBook));
       const item: WrongBookItem = {
         destination: question.destination,
         expectedDeparture: departureAnswers,
@@ -106,7 +168,7 @@ export function QuizPage() {
     const next = quizState.current + 1;
     if (next >= questions.length) {
       const total = questions.length;
-      const correct = quizState.correctCount + (isCorrect ? 1 : 0);
+      const correct = quizState.correctCount;
       const summary: ScoreSummary = {
         total,
         correct,
@@ -139,6 +201,10 @@ export function QuizPage() {
 
   return (
     <div className="space-y-4 pb-4">
+      <AppButton fullWidth={false} tone="neutral" onClick={() => navigate('/')}>
+        ← Back Home
+      </AppButton>
+
       <Card className="bg-gradient-to-br from-white via-white to-lime-50">
         <div className="space-y-4">
           <div className="flex items-center justify-between">

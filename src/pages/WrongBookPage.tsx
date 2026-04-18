@@ -3,7 +3,25 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AppButton } from '../components/AppButton';
 import { Card } from '../components/Card';
 import { STORAGE_KEYS } from '../utils';
-import type { WrongBookItem } from '../types';
+import type { FlightEntry, WrongBookItem } from '../types';
+
+function isFlightEntry(value: unknown): value is FlightEntry {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const row = value as Partial<FlightEntry>;
+  return (
+    typeof row.id === 'number' &&
+    typeof row.destination_japanese === 'string' &&
+    typeof row.route === 'string' &&
+    typeof row.departure_flight_number === 'string' &&
+    typeof row.return_route === 'string' &&
+    typeof row.return_flight_number === 'string' &&
+    typeof row.category === 'string' &&
+    typeof row.source === 'string'
+  );
+}
 
 function readWrongBook(): WrongBookItem[] {
   const raw = localStorage.getItem(STORAGE_KEYS.wrongBook);
@@ -12,7 +30,36 @@ function readWrongBook(): WrongBookItem[] {
   }
 
   try {
-    return JSON.parse(raw) as WrongBookItem[];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) {
+      return [];
+    }
+
+    return parsed
+      .map((item): WrongBookItem | null => {
+        if (!item || typeof item !== 'object') {
+          return null;
+        }
+
+        const candidate = item as Partial<WrongBookItem>;
+        const entriesSafe = Array.isArray(candidate.entries) ? candidate.entries.filter(isFlightEntry) : [];
+        if (typeof candidate.destination !== 'string' || entriesSafe.length === 0) {
+          return null;
+        }
+
+        return {
+          destination: candidate.destination,
+          expectedDeparture: Array.isArray(candidate.expectedDeparture)
+            ? candidate.expectedDeparture.filter((v): v is string => typeof v === 'string')
+            : entriesSafe.map((entry) => entry.departure_flight_number),
+          expectedReturn: Array.isArray(candidate.expectedReturn)
+            ? candidate.expectedReturn.filter((v): v is string => typeof v === 'string')
+            : entriesSafe.map((entry) => entry.return_flight_number),
+          entries: entriesSafe,
+          timestamp: typeof candidate.timestamp === 'string' ? candidate.timestamp : new Date().toISOString(),
+        };
+      })
+      .filter((item): item is WrongBookItem => item !== null);
   } catch {
     return [];
   }
