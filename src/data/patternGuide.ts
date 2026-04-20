@@ -21,6 +21,7 @@ export const patternGuideSections: PatternGuideSection[] = [
       '北米以外の国際線は、羽田発は奇数',
       '羽田着は偶数',
       '復路は往路より1大きい',
+      '!ソウル金浦NH865 NH864 例外',
     ],
     example: 'NH219 → NH220',
   },
