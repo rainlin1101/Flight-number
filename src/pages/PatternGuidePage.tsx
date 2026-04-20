@@ -7,7 +7,7 @@ export function PatternGuidePage() {
   return (
     <div className="space-y-4">
       <Card>
-        <h1 className="text-2xl font-bold">便名のルール</h1>
+        <h1 className="text-2xl font-bold">便名の規則性</h1>
       </Card>
 
       {patternGuideSections.map((section) => (
