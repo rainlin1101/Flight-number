@@ -15,7 +15,10 @@ export function PatternGuidePage() {
           <h2 className="text-lg font-bold">{section.title}</h2>
           <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-relaxed">
             {section.bullets.map((bullet) => (
-              <li key={bullet}>{bullet}</li>
+              <li 
+                key={bullet}
+                dangerouslySetInnerHTML={{ __html: bullet }}
+              />
             ))}
           </ul>
           {section.example && <p className="mt-3 rounded-lg bg-slate-50 px-3 py-2 text-sm">Example: {section.example}</p>}
