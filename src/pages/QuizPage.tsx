@@ -23,6 +23,11 @@ interface QuizPageState {
   customQuestions?: QuizQuestion[];
 }
 
+interface QuestionFeedback {
+  questionIndex: number;
+  isCorrect: boolean;
+}
+
 function isFlightEntry(value: unknown): value is FlightEntry {
   if (!value || typeof value !== 'object') {
     return false;
@@ -113,29 +118,26 @@ export function QuizPage() {
   });
 
   const question = questions[quizState.current];
-
   const [departureInputs, setDepartureInputs] = useState<string[]>(Array(question?.entries.length ?? 1).fill(''));
   const [returnInputs, setReturnInputs] = useState<string[]>(Array(question?.entries.length ?? 1).fill(''));
-  const [submitted, setSubmitted] = useState(false);
-  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const [feedback, setFeedback] = useState<QuestionFeedback | null>(null);
 
   const departureInputRefs = useRef<Array<HTMLInputElement | null>>([]);
 
   useEffect(() => {
-    if (submitted) {
-      return;
-    }
-
     const timer = window.setTimeout(() => {
       departureInputRefs.current[0]?.focus();
     }, 30);
 
     return () => window.clearTimeout(timer);
-  }, [quizState.current, submitted]);
+  }, [quizState.current]);
 
   if (!question) {
     return <Card>No questions available.</Card>;
   }
+
+  const feedbackVisible = feedback?.questionIndex === quizState.current;
+  const isLocked = Boolean(feedbackVisible);
 
   const departureAnswers = getDepartureAnswers(question.entries);
   const returnAnswers = getReturnAnswers(question.entries);
@@ -155,8 +157,7 @@ export function QuizPage() {
     const returnCorrect = isAnswerSetCorrect(returnAnswers, normalizedReturn);
     const correct = departureCorrect && returnCorrect;
 
-    setSubmitted(true);
-    setIsCorrect(correct);
+    setFeedback({ questionIndex: quizState.current, isCorrect: correct });
 
     if (!correct) {
       const existing = toWrongBookItems(localStorage.getItem(STORAGE_KEYS.wrongBook));
@@ -207,8 +208,7 @@ export function QuizPage() {
     }));
     setDepartureInputs(Array(nextLength).fill(''));
     setReturnInputs(Array(nextLength).fill(''));
-    setSubmitted(false);
-    setIsCorrect(null);
+    setFeedback(null);
   }
 
   const progress = Math.round(((quizState.current + 1) / questions.length) * 100);
@@ -246,7 +246,7 @@ export function QuizPage() {
       </Card>
 
       <Card>
-        <form className="space-y-5" onSubmit={submitAnswer}>
+        <form className="space-y-5" onSubmit={submitAnswer} key={`q-form-${quizState.current}`}>
           <div className="space-y-2">
             <p className="text-sm font-black tracking-wide text-slate-700">出発</p>
             {departureInputs.map((value, index) => (
@@ -268,7 +268,7 @@ export function QuizPage() {
                     inputMode="numeric"
                     pattern="[0-9]*"
                     onKeyDown={(event) => {
-                      if (event.key === 'Enter' && !submitted) {
+                      if (event.key === 'Enter' && !isLocked) {
                         event.preventDefault();
                         const form = event.currentTarget.form;
                         if (form) form.requestSubmit();
@@ -276,7 +276,7 @@ export function QuizPage() {
                     }}
                     className="w-full bg-transparent text-lg font-semibold outline-none"
                     placeholder="219"
-                    disabled={submitted}
+                    disabled={isLocked}
                   />
                 </span>
               </label>
@@ -301,7 +301,7 @@ export function QuizPage() {
                     inputMode="numeric"
                     pattern="[0-9]*"
                     onKeyDown={(event) => {
-                      if (event.key === 'Enter' && !submitted) {
+                      if (event.key === 'Enter' && !isLocked) {
                         event.preventDefault();
                         const form = event.currentTarget.form;
                         if (form) form.requestSubmit();
@@ -309,14 +309,14 @@ export function QuizPage() {
                     }}
                     className="w-full bg-transparent text-lg font-semibold outline-none"
                     placeholder="220"
-                    disabled={submitted}
+                    disabled={isLocked}
                   />
                 </span>
               </label>
             ))}
           </div>
 
-          {!submitted ? (
+          {!feedbackVisible ? (
             <AppButton type="submit">Check</AppButton>
           ) : (
             <AppButton type="button" onClick={nextQuestion} tone="secondary">
@@ -325,15 +325,15 @@ export function QuizPage() {
           )}
         </form>
 
-        {submitted && (
+        {feedbackVisible && (
           <div
             className={`mt-4 rounded-2xl border p-3 text-sm ${
-              isCorrect
+              feedback?.isCorrect
                 ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
                 : 'border-rose-200 bg-rose-50 text-rose-700'
             }`}
           >
-            <p className="text-base font-black">{isCorrect ? 'Correct' : 'Incorrect'}</p>
+            <p className="text-base font-black">{feedback?.isCorrect ? 'Correct' : 'Incorrect'}</p>
             <p className="mt-1">出発: {departureAnswers.join(', ')}</p>
             <p className="mt-1">到着: {returnAnswers.join(', ')}</p>
           </div>
