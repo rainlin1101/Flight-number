@@ -1,4 +1,4 @@
-import { FormEvent, useMemo, useState } from 'react';
+import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import entries from '../data/questions.json';
 import { AppButton } from '../components/AppButton';
@@ -118,6 +118,20 @@ export function QuizPage() {
   const [returnInputs, setReturnInputs] = useState<string[]>(Array(question?.entries.length ?? 1).fill(''));
   const [submitted, setSubmitted] = useState(false);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+
+  const departureInputRefs = useRef<Array<HTMLInputElement | null>>([]);
+
+  useEffect(() => {
+    if (submitted) {
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      departureInputRefs.current[0]?.focus();
+    }, 30);
+
+    return () => window.clearTimeout(timer);
+  }, [quizState.current, submitted]);
 
   if (!question) {
     return <Card>No questions available.</Card>;
@@ -240,6 +254,9 @@ export function QuizPage() {
                 <span className="flex items-center rounded-2xl border border-lime-200 bg-lime-50 px-3 py-3 shadow-inner focus-within:border-lime-500">
                   <span className="mr-2 font-black text-slate-700">NH</span>
                   <input
+                    ref={(element) => {
+                      departureInputRefs.current[index] = element;
+                    }}
                     value={value}
                     onChange={(event) =>
                       setDepartureInputs((prev) => {
